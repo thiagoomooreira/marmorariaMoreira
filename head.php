@@ -18,11 +18,11 @@ include("url.php");
 <body>
 <nav>
     <div class="nav-wrapper  green darken-4">
-        <a href="<?php echo("$url")?>/marmorariaMoreira/home.php" class="brand-logo">Marmoraria Moreira</a>
+        <a href="<?php echo("$url")?>/marmorariaMoreira/index.php" class="brand-logo">Marmoraria Moreira</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="<?php echo("$url")?>/marmorariaMoreira/Aluno/Aluno.php">Vendas</a></li>
-            <li><a href="<?php echo("$url")?>/marmorariaMoreira/Professor/Professor.php">Clientes</a></li>
-            <li><a href="<?php echo("$url")?>/marmorariaMoreira/Sala/Sala.php">Receita</a></li>
+            <li><a href="<?php echo("$url")?>/marmorariaMoreira/index.php">Vendas</a></li>
+            <li><a href="<?php echo("$url")?>/marmorariaMoreira/cliente/index.php">Clientes</a></li>
+            <li><a href="<?php echo("$url")?>/marmorariaMoreira/receita/index.php">Receita</a></li>
         </ul>
     </div>
 </nav>

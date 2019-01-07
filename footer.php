@@ -8,6 +8,15 @@
     $(document).ready(function(){
         $('select').formSelect();
     });
+    $(document).ready(function(){
+        $('input.autocomplete').autocomplete({
+            data: {
+                "Apple": null,
+                "Microsoft": null,
+                "Google": null
+            },
+        });
+    });
 </script>
 </body>
 
