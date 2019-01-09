@@ -1,6 +1,10 @@
-<?php include_once '../head.php';?>
+<?php include_once '../head.php';
 
-<div class="container">
+$page = "cliente";
+include '../php/read.php';
+?>
+
+<div class="container box-cliente">
     <div>
         <div class="right btn-create ">
             <a href="adicionar.php" class=" btn-floating btn-large waves-effect waves-light orange lighten-1"><i class="material-icons">add</i></a>
@@ -9,25 +13,21 @@
             <thead>
             <tr>
                 <th>Cliente</th>
-                <th>Valor</th>
-                <th>Forma de Pagamento</th>
+                <th>Telefone</th>
+                <th>Endereço</th>
                 <th>Editar</th>
             </tr>
             </thead>
 
             <tbody>
+            <?php while ($dado = $read->fetch_array()){?>
             <tr>
-                <td>Alvin</td>
-                <td>150,00</td>
-                <td>Dinheiro</td>
+                <td><?= $dado['nomeCliente']?></td>
+                <td><?= $dado['telefoneCliente']?></td>
+                <td><?= $dado['enderecoCliente']?></td>
                 <td><a class="waves-effect waves-light green darken-2 btn"><i class="material-icons">edit</i></a></td>
             </tr>
-            <tr>
-                <td>Alan</td>
-                <td>250</td>
-                <td>Cartão</td>
-                <td><a class="waves-effect waves-light green darken-2 btn"><i class="material-icons">edit</i></a></td>
-            </tr>
+            <?php }?>
             </tbody>
         </table>
     </div>

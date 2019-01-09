@@ -1,4 +1,7 @@
-<?php include_once 'head.php';?>
+<?php include_once 'head.php';
+$page = "venda";
+include 'php/read.php';
+?>
 
 
 <div class="container">
@@ -49,23 +52,22 @@
                 <th>Cliente</th>
                 <th>Valor</th>
                 <th>Forma de Pagamento</th>
+                <th>Data da Venda</th>
                 <th>Editar</th>
             </tr>
             </thead>
 
             <tbody>
-            <tr>
-                <td>Alvin</td>
-                <td>150,00</td>
-                <td>Dinheiro</td>
-                <td><a class="waves-effect waves-light green darken-2 btn"><i class="material-icons">edit</i></a></td>
-            </tr>
-            <tr>
-                <td>Alan</td>
-                <td>250</td>
-                <td>Cartão</td>
-                <td><a class="waves-effect waves-light green darken-2 btn"><i class="material-icons">edit</i></a></td>
-            </tr>
+            <?php while ($dado = $read->fetch_array()){?>
+                <tr>
+                    <td><?= $dado['cliente']?></td>
+                    <td><?= $dado['valor']?></td>
+                    <td><?= $dado['pagamento']?></td>
+                    <td><?= $dado['data']?></td>
+
+                    <td><a class="waves-effect waves-light green darken-2 btn"><i class="material-icons">edit</i></a></td>
+                </tr>
+            <?php }?>
             </tbody>
         </table>
     </div>

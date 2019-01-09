@@ -5,7 +5,7 @@ include("url.php");
 <head>
     <!-- Materialize -->
     <link rel="stylesheet" href="<?php echo("$url")?>/marmorariaMoreira/materialize/css/materialize.min.css">
-
+    <meta charset="UTF-8"/>
     <link href="<?php echo("$url")?>/marmorariaMoreira/materialize/icon/icon.css" rel="stylesheet">
 
     <!-- CSS -->

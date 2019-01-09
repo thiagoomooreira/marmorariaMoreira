@@ -1,27 +1,36 @@
-<?php include_once '../head.php';?>
+<?php include_once '../head.php';
+
+if($_POST){
+    $page = "cliente";
+    include '../php/create.php';
+    if($create){
+        echo "<script> location.href='index.php';</script>";
+    }
+}
+?>
 
 <div class="container box box-cliente">
     <div class="row">
         <h4 class="col s12 center">Cliente</h4>
     </div>
     <div class="row">
-        <form class="col s12">
+        <form class="col s12" method="post">
             <div class="row col s12">
                 <div class="input-field col s6">
                     <i class="material-icons prefix">account_circle</i>
-                    <input id="last_name" type="text" class="validate">
+                    <input id="last_name" name="nome" type="text" class="validate">
                     <label for="last_name">Nome do Cliente</label>
                 </div>
                 <div class="input-field col s6">
                     <i class="material-icons prefix">phone</i>
-                    <input id="last_name" type="tel" class="validate">
+                    <input id="last_name" name="telefone" type="tel" class="validate">
                     <label for="last_name">Telefone</label>
                 </div>
             </div>
             <div class="row col s12">
                 <div class="input-field col s8">
                     <i class="material-icons prefix">place</i>
-                    <textarea id="textarea2" class="materialize-textarea" data-length="120"></textarea>
+                    <textarea id="textarea2" name="endereco" class="materialize-textarea" data-length="120"></textarea>
                     <label for="textarea2">Endereço</label>
                 </div>
                 <div class="col s2 btn-forms">
