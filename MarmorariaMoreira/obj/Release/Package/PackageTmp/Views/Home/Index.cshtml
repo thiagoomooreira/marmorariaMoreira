@@ -1,0 +1,169 @@
+﻿@model MarmorariaMoreira.ViewModel.HomeVM
+
+
+<div id="main" class="main-full">
+    <div class="row">
+        <div class="breadcrumbs-dark" id="breadcrumbs-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12 m4 l4 card-width">
+                        <div class="card row blue white-text padding-4 mt-5">
+                            <div class="col s6 m6">
+                                <i class="material-icons background-round mt-5 mb-5">timeline</i>
+                                <p>Entrada</p>
+                            </div>
+                            <div class="col s6 m6 right-align">
+                                @{
+                                    decimal totalEntradas = 0;
+
+                                    foreach (var e in Model.ListarEntradas())
+                                    {
+                                        totalEntradas += e.Valor;
+                                    }
+
+                                    <h5 class="mb-0 white-text maskMoney">R$ <span>@totalEntradas</span></h5>
+                                    <p class="no-margin">Este Mês</p>
+                                    <p>Total de @Model.entradas.Count() Vendas</p>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 m4 l4 card-width">
+                        <div class="card row red white-text padding-4 mt-5">
+                            <div class="col s6 m6">
+                                <i class="material-icons background-round mt-5 mb-5">add_shopping_cart</i>
+                                <p>Saída</p>
+                            </div>
+                            <div class="col s6 m6 right-align">
+                                @{
+                                    decimal totalSaidas = 0;
+                                    foreach (var s in Model.ListarSaidas())
+                                    {
+                                        totalSaidas += s.Valor;
+                                    }
+                                    <h5 class="mb-0 white-text maskMoney">R$ <span>@totalSaidas</span></h5>
+                                    <p class="no-margin">Este Mês</p>
+                                    <p>Total de @Model.saidas.Count() Gastos</p>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 m4 l4 card-width">
+                        <div class="card row green darken-2 gradient-shadow white-text padding-4 mt-5">
+                            <div class="col s6 m6">
+                                <i class="material-icons background-round mt-5 mb-5">attach_money</i>
+                                <p>Receita</p>
+                            </div>
+                            <div class="col s6 m6 right-align">
+                                @{
+                                    var Receita = totalEntradas - totalSaidas;
+                                    var sinal = "";
+                                    if (Receita < 0)
+                                    {
+                                        Receita -= Receita*2;
+                                        sinal = "-";
+                                    }
+                                    <h5 class="mb-0 white-text maskMoney">R$ @sinal<span>@Receita</span></h5>
+                                    <p class="no-margin">Este Mês</p>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m12 l12">
+                        <div id="basic-form" class="card card card-default scrollspy">
+                            <div class="card-content">
+                                <h4 class="card-title">Cadastrar</h4>
+                                @using (Html.BeginForm("Cadastrar", "Home", FormMethod.Post))
+                                {
+                                    @Html.AntiForgeryToken();
+                                    <div class="row">
+                                        <div class="input-field col s12 m6 l3">
+                                            <select name="tipo">
+                                                <option value="entrada" selected>Venda</option>
+                                                <option value="saida">Gasto</option>
+                                            </select>
+                                            <label>Tipo</label>
+                                        </div>
+                                        <div class="input-field col s12 m6 l3">
+                                            <textarea id="descricao" class="materialize-textarea" name="descricao"></textarea>
+                                            <label for="descricao">Descrição</label>
+                                        </div>
+                                        <div class="input-field col s12 m6 l3">
+                                            <input id="valor" type="text" class="validate" name="valor">
+                                            <label for="valor">Valor</label>
+                                        </div>
+                                        <div class="input-field col s12 m6 l3">
+                                            <input id="data" name="data" type="text" class="datepicker" placeholder="Data">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <button class="btn waves-effect waves-light right" type="submit" name="action">
+                                                Cadastrar
+                                            </button>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- END: Footer-->
+<!-- BEGIN VENDOR JS-->
+<script src="~/Materialize/app-assets/js/vendors.min.js"></script>
+<!-- BEGIN VENDOR JS-->
+<!-- BEGIN PAGE VENDOR JS-->
+<script src="~/Materialize/app-assets/vendors/chartjs/chart.min.js"></script>
+    <script src="~/Materialize/app-assets/vendors/formatter/jquery.formatter.min.js"></script>
+<!-- END PAGE VENDOR JS-->
+<!-- BEGIN THEME  JS-->
+<script src="~/Materialize/app-assets/js/plugins.js"></script>
+    <script src="~/Materialize/app-assets/js/search.js"></script>
+    <script src="~/Materialize/app-assets/js/custom/custom-script.js"></script>
+<!-- END THEME  JS-->
+<!-- BEGIN PAGE LEVEL JS-->
+<script src="~/Materialize/app-assets/js/scripts/form-masks.js"></script>
+    <script src="~/Materialize/app-assets/js/scripts/dashboard-ecommerce.js"></script>
+<!-- END PAGE LEVEL JS-->
+<script src="~/Scripts/jQuery-Mask-Plugin-master/src/jquery.mask.js"></script>
+
+
+
+<script>
+    $('.datepicker').datepicker({
+        i18n: {
+            months: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+            monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+            weekdays: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabádo'],
+            weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+            weekdaysAbbrev: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
+            today: 'Hoje',
+            clear: 'Limpar',
+            cancel: 'Sair',
+            done: 'Confirmar',
+            labelMonthNext: 'Próximo mês',
+            labelMonthPrev: 'Mês anterior',
+            labelMonthSelect: 'Selecione um mês',
+            labelYearSelect: 'Selecione um ano',
+            selectMonths: true,
+            selectYears: 15,
+        },
+        format: 'dd/mm/yyyy',
+        container: 'body'
+    });
+    $(document).ready(function () {
+        $('#valor').mask('000.000.000.000.000,00', { reverse: true });
+        $('.maskMoney span').mask('000.000.000.000.000,00', { reverse: true });
+    });
+
+
+</script>

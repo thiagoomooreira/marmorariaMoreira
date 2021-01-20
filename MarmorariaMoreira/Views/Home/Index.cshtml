@@ -1,0 +1,117 @@
+﻿@model MarmorariaMoreira.ViewModel.HomeVM
+
+
+<div id="main" class="main-full">
+    <div class="row">
+        <div class="breadcrumbs-dark" id="breadcrumbs-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12 m4 card-width">
+                        <div class="card border-radius-6">
+                            <div class="card-content center-align">
+                                <i class="material-icons blue-text small-ico-bg mb-5">assignment</i>
+                                <h4 class="m-0"><b>R$ @Model.CalculaValorVendas()</b></h4>
+                                <p>Total de Vendas</p>
+                                <p class="green-text  mt-3">
+                                    <i class="material-icons vertical-align-middle">arrow_drop_up</i>
+                                    119.71%
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 m4 card-width">
+                        <div class="card border-radius-6">
+                            <div class="card-content center-align">
+                                <i class="material-icons red-text small-ico-bg mb-5">money_off</i>
+                                <h4 class="m-0 maskMoney"><b>R$ <span>@Model.CalculaValorDespesas()</span></b></h4>
+                                <p>Total de Despesas</p>
+                                <p class="green-text  mt-3">
+                                    <i class="material-icons vertical-align-middle">arrow_drop_up</i>
+                                    119.71%
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 m4 card-width">
+                        <div class="card border-radius-6">
+                            <div class="card-content center-align">
+                                @{
+                                    var Receita = Model.CalculaValorVendas() - Model.CalculaValorDespesas();
+                                    if (Receita < 0)
+                                    {
+                                        <i class="material-icons red-text small-ico-bg mb-5">arrow_downward</i>
+                                        <h4 class="m-0 maskMoney"><b>R$ - <span>@Receita</span></b></h4>
+                                    }else
+                                    {
+                                        <i class="material-icons green-text small-ico-bg mb-5">check</i>
+                                        <h4 class="m-0 maskMoney"><b>R$ <span>@Receita</span></b></h4>
+
+                                    }
+                                    <p>Lucro</p>
+                                    <p class="green-text  mt-3">
+                                        <i class="material-icons vertical-align-middle">arrow_drop_up</i>
+                                        119.71%
+                                    </p>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- END: Footer-->
+<!-- BEGIN VENDOR JS-->
+<script src="~/Materialize/app-assets/js/vendors.min.js"></script>
+<!-- BEGIN VENDOR JS-->
+<!-- BEGIN PAGE VENDOR JS-->
+<script src="~/Materialize/app-assets/vendors/chartjs/chart.min.js"></script>
+<script src="~/Materialize/app-assets/vendors/sparkline/jquery.sparkline.min.js"></script>
+<script src="~/Materialize/app-assets/vendors/formatter/jquery.formatter.min.js"></script>
+<!-- END PAGE VENDOR JS-->
+<!-- BEGIN THEME  JS-->
+<script src="~/Materialize/app-assets/js/plugins.js"></script>
+<script src="~/Materialize/app-assets/js/search.js"></script>
+<script src="~/Materialize/app-assets/js/custom/custom-script.js"></script>
+<!-- END THEME  JS-->
+<!-- BEGIN PAGE LEVEL JS-->
+<script src="~/Materialize/app-assets/js/scripts/form-masks.js"></script>
+<script src="~/Materialize/app-assets/js/scripts/dashboard-ecommerce.js"></script>
+<script src="~/Materialize/app-assets/js/scripts/charts-sparklines.min.js"></script>
+<script src="~/Scripts/jQuery-Mask-Plugin-master/src/jquery.mask.js"></script>
+
+<!-- END PAGE LEVEL JS-->
+
+
+
+<script>
+    $('.datepicker').datepicker({
+        i18n: {
+            months: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+            monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+            weekdays: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabádo'],
+            weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+            weekdaysAbbrev: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
+            today: 'Hoje',
+            clear: 'Limpar',
+            cancel: 'Sair',
+            done: 'Confirmar',
+            labelMonthNext: 'Próximo mês',
+            labelMonthPrev: 'Mês anterior',
+            labelMonthSelect: 'Selecione um mês',
+            labelYearSelect: 'Selecione um ano',
+            selectMonths: true,
+            selectYears: 15,
+        },
+        format: 'dd/mm/yyyy',
+        container: 'body'
+    });
+    $(document).ready(function () {
+        $('#valor').mask('000.000.000.000.000,00', { reverse: true });
+        $('.maskMoney span').mask('000.000.000.000.000,00', { reverse: true });
+    });
+
+
+</script>
